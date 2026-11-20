@@ -1,0 +1,62 @@
+[
+  {
+    "settings": {
+      "epochs": 15,
+      "dropout": 0.1,
+      "label_smoothing": 0.0
+    },
+    "best_epoch": 13,
+    "val": {
+      "in_scope_accuracy": 0.8953333497047424,
+      "oos_recall": 0.20999999344348907,
+      "overall_accuracy": 0.8732258081436157,
+      "n_in_scope": 3000,
+      "n_oos": 100
+    }
+  },
+  {
+    "settings": {
+      "epochs": 15,
+      "dropout": 0.2,
+      "label_smoothing": 0.1
+    },
+    "best_epoch": 13,
+    "val": {
+      "in_scope_accuracy": 0.8986666798591614,
+      "oos_recall": 0.28999999165534973,
+      "overall_accuracy": 0.8790322542190552,
+      "n_in_scope": 3000,
+      "n_oos": 100
+    }
+  },
+  {
+    "settings": {
+      "epochs": 15,
+      "dropout": 0.3,
+      "label_smoothing": 0.1
+    },
+    "best_epoch": 14,
+    "val": {
+      "in_scope_accuracy": 0.902999997138977,
+      "oos_recall": 0.1899999976158142,
+      "overall_accuracy": 0.8799999952316284,
+      "n_in_scope": 3000,
+      "n_oos": 100
+    }
+  },
+  {
+    "settings": {
+      "epochs": 25,
+      "dropout": 0.3,
+      "label_smoothing": 0.1
+    },
+    "best_epoch": 21,
+    "val": {
+      "in_scope_accuracy": 0.8996666669845581,
+      "oos_recall": 0.2199999988079071,
+      "overall_accuracy": 0.8777419328689575,
+      "n_in_scope": 3000,
+      "n_oos": 100
+    }
+  }
+]

@@ -44,10 +44,14 @@ class Preset:
 
 
 PRESETS: dict[str, Preset] = {
+    # Settings chosen by scripts/sweep_tiny.py on the validation split (results/sweeps/tiny_val.json).
+    # The top two settings were within 0.1 points of each other (3 of 3,100 validation sentences),
+    # i.e. within single-seed noise; the pre-declared rule (best validation accuracy) picked this one.
     "tiny": Preset(
         name="tiny",
         description="2-layer transformer, 4k WordPiece vocab, trained from scratch",
-        train=TrainConfig(epochs=40, batch_size=64, lr=1e-3),
+        train=TrainConfig(epochs=15, batch_size=64, lr=1e-3, label_smoothing=0.1),
+        dropout=0.3,
     ),
     "minilm": Preset(
         name="minilm",
