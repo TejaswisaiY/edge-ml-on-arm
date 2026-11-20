@@ -1,0 +1,29 @@
+name: tests
+
+# Unit tests on a real Arm64 machine and on x86-64, on every push.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04-arm, ubuntu-24.04]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install --extra-index-url https://download.pytorch.org/whl/cpu -e ".[dev,reference]"
+      - name: Machine description
+        run: python -m edgeml.sysinfo
+      - name: Tests
+        run: pytest -v

@@ -1,0 +1,117 @@
+name: pipeline
+
+# Full, reproducible experiment:
+#   1. train both models on an Arm64 runner
+#   2. export each to ExecuTorch (fp32 and int8)
+#   3. benchmark the *same* exported files on Arm64 and on x86-64
+#   4. commit the raw JSON + a generated summary to results/, linked to this run
+on:
+  workflow_dispatch:
+    inputs:
+      presets:
+        description: "Models to run (space separated)"
+        default: "tiny minilm"
+      iters:
+        description: "Timed iterations per configuration"
+        default: "300"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+env:
+  PYTHONWARNINGS: ignore
+
+jobs:
+  train:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install --extra-index-url https://download.pytorch.org/whl/cpu -e .
+      - run: python -m edgeml.sysinfo | tee sysinfo_train.json
+      - name: Train
+        run: for p in ${{ inputs.presets }}; do python -m edgeml.train "$p"; done
+      - name: Export to ExecuTorch (fp32, int8)
+        run: for p in ${{ inputs.presets }}; do python -m edgeml.export "$p"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trained
+          path: |
+            artifacts/runs/
+            artifacts/exports/
+          retention-days: 30
+
+  benchmark:
+    needs: train
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04-arm, ubuntu-24.04]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    env:
+      EDGEML_RUNNER_LABEL: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install --extra-index-url https://download.pytorch.org/whl/cpu -e .
+      - uses: actions/download-artifact@v4
+        with:
+          name: trained
+          path: artifacts/
+      - name: Benchmark
+        run: >
+          python -m edgeml.benchmark --presets ${{ inputs.presets }} --iters ${{ inputs.iters }}
+          --out results/${{ matrix.runner }}/benchmark.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.runner }}
+          path: results/${{ matrix.runner }}/
+
+  publish:
+    needs: benchmark
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: trained
+          path: artifacts/
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: results-*
+          path: downloaded/
+      - name: Collect results
+        run: |
+          for d in downloaded/results-*; do
+            runner="${d#downloaded/results-}"
+            mkdir -p "results/$runner" && cp "$d"/benchmark.json "results/$runner/"
+          done
+          for run in artifacts/runs/*/; do
+            name="$(basename "$run")"
+            mkdir -p "results/training/$name"
+            cp "$run"/config.json "$run"/metrics.json "$run"/train_log.jsonl "results/training/$name/"
+          done
+          cp artifacts/exports/*.export.json results/training/ 2>/dev/null || true
+          PYTHONPATH=src python -c "import edgeml.report as r; r.main()"
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/
+          git commit -m "results: pipeline run ${{ github.run_id }}" -m "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || echo "nothing to commit"
+          git push

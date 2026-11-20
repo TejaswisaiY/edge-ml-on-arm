@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgeml"
+version = "0.1.0"
+description = "On-device intent understanding on Arm: a tiny transformer trained from scratch vs a fine-tuned MiniLM, FP32 vs INT8, deployed and measured with ExecuTorch."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = { text = "MIT" }
+authors = [{ name = "Tejaswisai Yerramsetti" }]
+dependencies = [
+  "torch==2.15.0",
+  "executorch==1.6.0",
+  "tokenizers>=0.20",
+  "safetensors>=0.4",
+  "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "matplotlib>=3.8"]
+# Only used by the equivalence test that checks our encoder against the reference BERT implementation.
+reference = ["transformers>=4.45"]
+
+[project.scripts]
+edgeml = "edgeml.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "network: needs internet access (downloads data or weights)",
+  "slow: takes more than a few seconds",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::SyntaxWarning"]
