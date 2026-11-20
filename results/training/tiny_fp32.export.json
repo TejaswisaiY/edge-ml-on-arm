@@ -1,0 +1,110 @@
+{
+  "num_delegated_subgraphs": 11,
+  "num_delegated_nodes": 69,
+  "num_non_delegated_nodes": 46,
+  "not_delegated_ops": {
+    "aten_alias_copy_default": 1,
+    "aten_embedding_default": 2,
+    "aten_expand_copy_default": 8,
+    "aten_native_layer_norm_default": 5,
+    "aten_select_copy_int": 1,
+    "aten_sum_dim_int_list": 2,
+    "aten_unsqueeze_copy_default": 2,
+    "dim_order_ops__to_dim_order_copy_default": 2,
+    "getitem": 23
+  },
+  "by_operator": {
+    "aten__softmax_default": {
+      "delegated": 2,
+      "not_delegated": 0
+    },
+    "aten_add_tensor": {
+      "delegated": 8,
+      "not_delegated": 0
+    },
+    "aten_alias_copy_default": {
+      "delegated": 0,
+      "not_delegated": 1
+    },
+    "aten_bmm_default": {
+      "delegated": 4,
+      "not_delegated": 0
+    },
+    "aten_clamp_default": {
+      "delegated": 1,
+      "not_delegated": 0
+    },
+    "aten_div_tensor": {
+      "delegated": 1,
+      "not_delegated": 0
+    },
+    "aten_embedding_default": {
+      "delegated": 0,
+      "not_delegated": 2
+    },
+    "aten_expand_copy_default": {
+      "delegated": 0,
+      "not_delegated": 8
+    },
+    "aten_gelu_default": {
+      "delegated": 2,
+      "not_delegated": 0
+    },
+    "aten_linear_default": {
+      "delegated": 13,
+      "not_delegated": 0
+    },
+    "aten_mul_tensor": {
+      "delegated": 4,
+      "not_delegated": 0
+    },
+    "aten_native_layer_norm_default": {
+      "delegated": 0,
+      "not_delegated": 5
+    },
+    "aten_permute_copy_default": {
+      "delegated": 10,
+      "not_delegated": 0
+    },
+    "aten_select_copy_int": {
+      "delegated": 0,
+      "not_delegated": 1
+    },
+    "aten_sub_tensor": {
+      "delegated": 1,
+      "not_delegated": 0
+    },
+    "aten_sum_dim_int_list": {
+      "delegated": 0,
+      "not_delegated": 2
+    },
+    "aten_unsqueeze_copy_default": {
+      "delegated": 1,
+      "not_delegated": 2
+    },
+    "aten_view_copy_default": {
+      "delegated": 20,
+      "not_delegated": 0
+    },
+    "dim_order_ops__clone_dim_order_default": {
+      "delegated": 2,
+      "not_delegated": 0
+    },
+    "dim_order_ops__to_dim_order_copy_default": {
+      "delegated": 0,
+      "not_delegated": 2
+    },
+    "getitem": {
+      "delegated": 0,
+      "not_delegated": 23
+    }
+  },
+  "precision": "fp32",
+  "int8_modules": null,
+  "pte_bytes": 3810140,
+  "export_seconds": 7.38,
+  "input_shape": [
+    1,
+    32
+  ]
+}

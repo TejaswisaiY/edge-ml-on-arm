@@ -1,0 +1,34 @@
+{
+  "preset": "tiny",
+  "description": "2-layer transformer, 4k WordPiece vocab, trained from scratch",
+  "max_len": 32,
+  "model": {
+    "vocab_size": 4096,
+    "hidden": 128,
+    "layers": 2,
+    "heads": 4,
+    "intermediate": 512,
+    "max_positions": 32,
+    "num_labels": 151,
+    "dropout": 0.3,
+    "ln_eps": 1e-12
+  },
+  "train": {
+    "epochs": 15,
+    "batch_size": 64,
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "grad_clip": 1.0,
+    "label_smoothing": 0.1,
+    "seed": 0
+  },
+  "parameters": {
+    "total": 944919,
+    "embeddings": 528640,
+    "non_embedding": 416279
+  },
+  "test_truncated_fraction": 0.0003636363636363636,
+  "torch": "2.15.0+cpu",
+  "threads": 4
+}

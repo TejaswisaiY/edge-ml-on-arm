@@ -1,0 +1,740 @@
+{
+  "system": {
+    "machine": "aarch64",
+    "cpu_model": "Neoverse-N2",
+    "cpu_vendor": "ARM",
+    "logical_cpus": 4,
+    "ml_cpu_features": {
+      "asimd": true,
+      "asimddp": true,
+      "i8mm": true,
+      "bf16": true,
+      "fphp": true,
+      "asimdhp": true,
+      "sve": true,
+      "sve2": true,
+      "sme": false
+    },
+    "l2_cache": "4 MiB (4 instances)",
+    "l3_cache": "128 MiB (1 instance)",
+    "os": "Linux-7.0.0-1017-azure-aarch64-with-glibc2.39",
+    "python": "3.12.16",
+    "torch": "2.15.0+cpu",
+    "executorch": "1.6.0+cpu",
+    "ci": {
+      "runner_label": "ubuntu-24.04-arm",
+      "run_url": "https://github.com/TejaswisaiY/edge-ml-on-arm/actions/runs/44765535130",
+      "commit": "f311a900ce8ca19d0b7cefe8fe190c6b4860f223"
+    }
+  },
+  "results": [
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 1,
+      "latency": {
+        "median_ms": 2.9261,
+        "p90_ms": 3.0053,
+        "p99_ms": 4.1527,
+        "mean_ms": 2.9628,
+        "std_ms": 0.1971,
+        "min_ms": 2.7409,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 2,
+      "latency": {
+        "median_ms": 4.8023,
+        "p90_ms": 5.0499,
+        "p99_ms": 5.5469,
+        "mean_ms": 4.8393,
+        "std_ms": 0.1895,
+        "min_ms": 4.5777,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 4,
+      "latency": {
+        "median_ms": 2.4832,
+        "p90_ms": 2.5386,
+        "p99_ms": 2.6821,
+        "mean_ms": 2.4941,
+        "std_ms": 0.1404,
+        "min_ms": 2.3787,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 1,
+      "pte_bytes": 3810140,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 23
+      },
+      "latency": {
+        "median_ms": 0.8217,
+        "p90_ms": 0.8308,
+        "p99_ms": 0.8413,
+        "mean_ms": 0.8169,
+        "std_ms": 0.0172,
+        "min_ms": 0.7763,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.59,
+        "rss_after_mib": 284.32,
+        "delta_mib": 6.73
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 2,
+      "pte_bytes": 3810140,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 23
+      },
+      "latency": {
+        "median_ms": 0.6784,
+        "p90_ms": 0.6946,
+        "p99_ms": 0.7091,
+        "mean_ms": 0.6781,
+        "std_ms": 0.0137,
+        "min_ms": 0.6476,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.59,
+        "rss_after_mib": 284.32,
+        "delta_mib": 6.73
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 4,
+      "pte_bytes": 3810140,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 23
+      },
+      "latency": {
+        "median_ms": 0.6134,
+        "p90_ms": 0.6417,
+        "p99_ms": 0.6645,
+        "mean_ms": 0.6163,
+        "std_ms": 0.019,
+        "min_ms": 0.5827,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.59,
+        "rss_after_mib": 284.32,
+        "delta_mib": 6.73
+      },
+      "test": {
+        "in_scope_accuracy": 0.9082221984863281,
+        "oos_recall": 0.18000000715255737,
+        "overall_accuracy": 0.7758181691169739,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 1,
+      "pte_bytes": 2589020,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 29
+      },
+      "latency": {
+        "median_ms": 0.3693,
+        "p90_ms": 0.3934,
+        "p99_ms": 0.4012,
+        "mean_ms": 0.3747,
+        "std_ms": 0.0145,
+        "min_ms": 0.353,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 296.58,
+        "rss_after_mib": 301.94,
+        "delta_mib": 5.36
+      },
+      "test": {
+        "in_scope_accuracy": 0.9079999923706055,
+        "oos_recall": 0.17900000512599945,
+        "overall_accuracy": 0.7754545211791992,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 2,
+      "pte_bytes": 2589020,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 29
+      },
+      "latency": {
+        "median_ms": 0.428,
+        "p90_ms": 0.4491,
+        "p99_ms": 0.4678,
+        "mean_ms": 0.4307,
+        "std_ms": 0.0147,
+        "min_ms": 0.3832,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 296.58,
+        "rss_after_mib": 301.94,
+        "delta_mib": 5.36
+      },
+      "test": {
+        "in_scope_accuracy": 0.9079999923706055,
+        "oos_recall": 0.17900000512599945,
+        "overall_accuracy": 0.7754545211791992,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "tiny",
+      "parameters": {
+        "total": 944919,
+        "embeddings": 528640,
+        "non_embedding": 416279
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 4,
+      "pte_bytes": 2589020,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 8,
+        "aten_native_layer_norm_default": 5,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 29
+      },
+      "latency": {
+        "median_ms": 0.4827,
+        "p90_ms": 0.5022,
+        "p99_ms": 0.5306,
+        "mean_ms": 0.4832,
+        "std_ms": 0.0157,
+        "min_ms": 0.4549,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 296.58,
+        "rss_after_mib": 301.94,
+        "delta_mib": 5.36
+      },
+      "test": {
+        "in_scope_accuracy": 0.9079999923706055,
+        "oos_recall": 0.17900000512599945,
+        "overall_accuracy": 0.7754545211791992,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 1,
+      "latency": {
+        "median_ms": 17.0745,
+        "p90_ms": 18.2405,
+        "p99_ms": 23.5263,
+        "mean_ms": 17.5358,
+        "std_ms": 1.3218,
+        "min_ms": 16.7822,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 2,
+      "latency": {
+        "median_ms": 21.2187,
+        "p90_ms": 22.2302,
+        "p99_ms": 26.9209,
+        "mean_ms": 21.5238,
+        "std_ms": 1.4305,
+        "min_ms": 19.9713,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "pytorch_eager",
+      "precision": "fp32",
+      "threads": 4,
+      "latency": {
+        "median_ms": 13.5544,
+        "p90_ms": 14.0191,
+        "p99_ms": 20.3227,
+        "mean_ms": 13.6805,
+        "std_ms": 1.2438,
+        "min_ms": 12.4353,
+        "iters": 300,
+        "warmup": 30
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 1,
+      "pte_bytes": 89831132,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 55
+      },
+      "latency": {
+        "median_ms": 18.6456,
+        "p90_ms": 18.788,
+        "p99_ms": 18.9594,
+        "mean_ms": 18.646,
+        "std_ms": 0.1256,
+        "min_ms": 18.2875,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.56,
+        "rss_after_mib": 322.52,
+        "delta_mib": 44.96
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 2,
+      "pte_bytes": 89831132,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 55
+      },
+      "latency": {
+        "median_ms": 10.4798,
+        "p90_ms": 10.581,
+        "p99_ms": 10.6675,
+        "mean_ms": 10.4794,
+        "std_ms": 0.0807,
+        "min_ms": 10.2071,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.56,
+        "rss_after_mib": 322.52,
+        "delta_mib": 44.96
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "fp32",
+      "threads": 4,
+      "pte_bytes": 89831132,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 55
+      },
+      "latency": {
+        "median_ms": 6.4213,
+        "p90_ms": 6.5386,
+        "p99_ms": 7.6091,
+        "mean_ms": 6.4574,
+        "std_ms": 0.2717,
+        "min_ms": 6.1932,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 277.56,
+        "rss_after_mib": 322.52,
+        "delta_mib": 44.96
+      },
+      "test": {
+        "in_scope_accuracy": 0.9597777724266052,
+        "oos_recall": 0.3319999873638153,
+        "overall_accuracy": 0.8456363677978516,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 1,
+      "pte_bytes": 57909980,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 73
+      },
+      "latency": {
+        "median_ms": 4.3563,
+        "p90_ms": 4.4461,
+        "p99_ms": 4.5159,
+        "mean_ms": 4.3589,
+        "std_ms": 0.0648,
+        "min_ms": 4.205,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 271.12,
+        "rss_after_mib": 285.86,
+        "delta_mib": 14.74
+      },
+      "test": {
+        "in_scope_accuracy": 0.9586666822433472,
+        "oos_recall": 0.33799999952316284,
+        "overall_accuracy": 0.8458181619644165,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 2,
+      "pte_bytes": 57909980,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 73
+      },
+      "latency": {
+        "median_ms": 3.1529,
+        "p90_ms": 3.2126,
+        "p99_ms": 3.2705,
+        "mean_ms": 3.1565,
+        "std_ms": 0.0436,
+        "min_ms": 3.0367,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 271.12,
+        "rss_after_mib": 285.86,
+        "delta_mib": 14.74
+      },
+      "test": {
+        "in_scope_accuracy": 0.9586666822433472,
+        "oos_recall": 0.33799999952316284,
+        "overall_accuracy": 0.8458181619644165,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    },
+    {
+      "preset": "minilm",
+      "parameters": {
+        "total": 22439191,
+        "embeddings": 11733504,
+        "non_embedding": 10705687
+      },
+      "backend": "executorch_xnnpack",
+      "precision": "int8",
+      "threads": 4,
+      "pte_bytes": 57909980,
+      "non_delegated_ops": {
+        "aten_alias_copy_default": 1,
+        "aten_embedding_default": 2,
+        "aten_expand_copy_default": 24,
+        "aten_native_layer_norm_default": 13,
+        "aten_select_copy_int": 1,
+        "aten_sum_dim_int_list": 2,
+        "aten_unsqueeze_copy_default": 2,
+        "dim_order_ops__to_dim_order_copy_default": 2,
+        "getitem": 73
+      },
+      "latency": {
+        "median_ms": 2.6995,
+        "p90_ms": 2.796,
+        "p99_ms": 3.1701,
+        "mean_ms": 2.7157,
+        "std_ms": 0.1156,
+        "min_ms": 2.523,
+        "iters": 300,
+        "warmup": 30
+      },
+      "memory": {
+        "rss_before_mib": 271.12,
+        "rss_after_mib": 285.86,
+        "delta_mib": 14.74
+      },
+      "test": {
+        "in_scope_accuracy": 0.9586666822433472,
+        "oos_recall": 0.33799999952316284,
+        "overall_accuracy": 0.8458181619644165,
+        "n_in_scope": 4500,
+        "n_oos": 1000
+      }
+    }
+  ]
+}

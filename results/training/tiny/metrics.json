@@ -1,0 +1,20 @@
+{
+  "preset": "tiny",
+  "best_epoch": 15,
+  "steps": 3540,
+  "train_seconds": 226.8,
+  "val": {
+    "in_scope_accuracy": 0.9010000228881836,
+    "oos_recall": 0.18000000715255737,
+    "overall_accuracy": 0.8777419328689575,
+    "n_in_scope": 3000,
+    "n_oos": 100
+  },
+  "test": {
+    "in_scope_accuracy": 0.9082221984863281,
+    "oos_recall": 0.18000000715255737,
+    "overall_accuracy": 0.7758181691169739,
+    "n_in_scope": 4500,
+    "n_oos": 1000
+  }
+}
